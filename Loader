@@ -1,1 +1,37 @@
+repeat task.wait() until game:IsLoaded()
 
+local LocalPlayer = game.Players.LocalPlayer
+
+local BlacklistedUsers = {""}
+
+function Blacklisted()
+	LocalPlayer:Kick("You Are Blacklisted From Velocity.")
+
+	task.wait(5)
+
+	game:shutdown()
+end
+
+task.spawn(function()
+	for i, v in next, BlacklistedUsers do	
+		task.spawn(function()
+			if LocalPlayer.Name == v then
+				Blacklisted()
+
+				shared.VelocityLoaded = false
+			end
+		end)	
+
+		task.spawn(function()
+			if LocalPlayer.Name ~= v then
+				task.spawn(function()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/Velocity/main/MainScript"))()
+
+					task.wait()
+
+					shared.VelocityLoaded = true
+				end)
+			end
+		end)
+	end
+end)
