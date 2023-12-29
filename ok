@@ -215,7 +215,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 	local ToggleName = Instance.new("TextLabel")
 	local UIPadding_3 = Instance.new("UIPadding")
 	local ToggleFrame = Instance.new("Frame")
-	local ToggleFrameC = Instance.new("UICorner")
+	local ToggleFrameCorner = Instance.new("UICorner")
 	local ToggleButton = Instance.new("TextButton")
 	local ToggleButtonCorner = Instance.new("UICorner")
 	local OptionsLayout = Instance.new("UIListLayout")
@@ -289,12 +289,12 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 	ToggleFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ToggleFrame.BorderSizePixel = 0
 	ToggleFrame.Position = UDim2.new(0, 170, 0, 5)
-	ToggleFrame.Size = UDim2.new(0, 30, 0, 20)
+	ToggleFrame.Size = UDim2.new(0.143, 0, 0.667, 0)
 	ToggleFrame.ZIndex = 2
 
-	ToggleFrameC.CornerRadius = UDim.new(0, 10)
-	ToggleFrameC.Name = "ToggleFrameC"
-	ToggleFrameC.Parent = ToggleFrame
+	ToggleFrameCorner.CornerRadius = UDim.new(0, 10)
+	ToggleFrameCorner.Name = "ToggleFrameC"
+	ToggleFrameCorner.Parent = ToggleFrame
 
 	ToggleButton.Name = "ToggleButton"
 	ToggleButton.Parent = ToggleFrame
