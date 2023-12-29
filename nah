@@ -222,7 +222,6 @@ function CreateMiniToggle(Name, Parent, LayoutOrder, DefaultValue, CallBack)
 	local ToggleFrameCorner = Instance.new("UICorner")
 	local ToggleButton = Instance.new("TextButton")
 	local ToggleButtonCorner = Instance.new("UICorner")
-	local OptionsLayout = Instance.new("UIListLayout")
 	
 	local Checker = {["Enabled"] = false}
 
@@ -318,10 +317,6 @@ function CreateMiniToggle(Name, Parent, LayoutOrder, DefaultValue, CallBack)
 	ToggleButtonCorner.CornerRadius = UDim.new(1, 0)
 	ToggleButtonCorner.Name = "ToggleButtonCorner"
 	ToggleButtonCorner.Parent = ToggleButton
-
-	OptionsLayout.Name = "OptionsLayout"
-	OptionsLayout.Parent = Parent
-	OptionsLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	
 	return Toggle
 end
@@ -346,7 +341,7 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", KillAura, LayoutOrder, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
 				print(CallBack)
 			end)
 		end
@@ -379,7 +374,7 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", KillAura, LayoutOrder, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
 				print(CallBack)
 			end)
 		end
