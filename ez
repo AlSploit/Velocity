@@ -231,7 +231,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 				CallBack(false)
 				ToggleFrame.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
 				
-				local TweenInformation = TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+				local TweenInformation = TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(-0.367, 14, 0.5, 0)})
 				
 				PositionTween:Play()
@@ -241,7 +241,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 				CallBack(true)
 				ToggleFrame.BackgroundColor3 = Color3.new(0.635294, 0.313725, 1)
 				
-				local TweenInformation = TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+				local TweenInformation = TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(0, 14 ,0.5, 0)})
 
 				PositionTween:Play()
@@ -269,8 +269,8 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 
 	ToggleName.Name = "ToggleName"
 	ToggleName.Parent = Toggle
-	ToggleName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ToggleName.BackgroundTransparency = 1.000
+	ToggleName.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+	ToggleName.BackgroundTransparency = 0
 	ToggleName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ToggleName.BorderSizePixel = 0
 	ToggleName.Size = UDim2.new(1, 0, 1, 0)
@@ -290,6 +290,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 	ToggleFrame.BorderSizePixel = 0
 	ToggleFrame.Position = UDim2.new(0, 170, 0, 5)
 	ToggleFrame.Size = UDim2.new(0, 30, 0, 20)
+	ToggleFrame.ZIndex = 2
 
 	ToggleFrameC.CornerRadius = UDim.new(0, 10)
 	ToggleFrameC.Name = "ToggleFrameC"
@@ -308,6 +309,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 	ToggleButton.Text = ""
 	ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 	ToggleButton.TextSize = 14.000
+	ToggleButton.ZIndex = 3
 
 	ToggleButtonCorner.CornerRadius = UDim.new(1, 0)
 	ToggleButtonCorner.Name = "ToggleButtonCorner"
