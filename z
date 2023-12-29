@@ -335,7 +335,7 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder - 1, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 2, true, function(CallBack)
 				print(LayoutOrder + 1 .. " CustomAnimations")
 			end)
 		end
@@ -370,7 +370,7 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder - 1, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 2, true, function(CallBack)
 				print(LayoutOrder + 1 .. " CustomAnimations2")
 			end)
 		end
