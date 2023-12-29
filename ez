@@ -1,6 +1,6 @@
 local LocalPlayer = game.Players.LocalPlayer
 
-local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 
 local Velocity = Instance.new("ScreenGui")
 local ContainerFrame = Instance.new("Frame")
@@ -142,7 +142,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 		if not Bool then
 			task.spawn(function()
 				CallBack(false)
-				ModuleButton.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
+				ModuleButton.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
 			end)
 		else
 			task.spawn(function()
@@ -193,7 +193,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	DropDownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	DropDownButton.BorderSizePixel = 0
 	DropDownButton.Position = UDim2.new(0, 187, 0, 14)
-	DropDownButton.Rotation = 90.000
+	DropDownButton.Rotation = 0
 	DropDownButton.Size = UDim2.new(0, 13, 0, 13)
 	DropDownButton.Image = "http://www.roblox.com/asset/?id=6026663699"
 	DropDownButton.ScaleType = Enum.ScaleType.Fit
@@ -206,15 +206,144 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	Options.Position = UDim2.new(0, 0, 0, 40)
 	Options.Size = UDim2.new(1, 0, 0, 0)
 
-	return DropDownButton, Options
+	return Module, DropDownButton, Options
 end
 
-local VelocityApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/Velocity/main/Api"))()
+function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
+	local Toggle = Instance.new("Frame")
+	local ToggleName = Instance.new("TextLabel")
+	local UIPadding_3 = Instance.new("UIPadding")
+	local ToggleFrame = Instance.new("Frame")
+	local ToggleFrameC = Instance.new("UICorner")
+	local ToggleButton = Instance.new("TextButton")
+	local ToggleButtonCorner = Instance.new("UICorner")
+	local OptionsLayout = Instance.new("UIListLayout")
+	
+	local Checker = {["Enabled"] = false}
 
-local LocalPlayer = game.Players.LocalPlayer
+	function Checker:Toggle(Bool)
+		Bool = Bool or (not Checker["Enabled"])
+		Checker["Enabled"] = Bool
+
+		if not Bool then
+			task.spawn(function()
+				CallBack(false)
+				ToggleFrame.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+				
+				local TweenInformation = TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(-0.367, 14, 0.5, 0)})
+				
+				PositionTween:Play()
+			end)
+		else
+			task.spawn(function()
+				CallBack(true)
+				ToggleFrame.BackgroundColor3 = Color3.new(0.635294, 0.313725, 1)
+				
+				local TweenInformation = TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(0, 14 ,0.5, 0)})
+
+				PositionTween:Play()
+			end)
+		end
+	end
+
+	if DefaultValue == true then
+		Checker:Toggle()
+	end
+
+	task.spawn(function()
+		ToggleButton.Activated:Connect(function()
+			Checker:Toggle()	
+		end)
+	end)	
+	
+	Toggle.Name = "Toggle"
+	Toggle.Parent = Parent
+	Toggle.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+	Toggle.BackgroundTransparency = 1.000
+	Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Toggle.BorderSizePixel = 0
+	Toggle.Size = UDim2.new(1, 0, 0, 30)
+
+	ToggleName.Name = "ToggleName"
+	ToggleName.Parent = Toggle
+	ToggleName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ToggleName.BackgroundTransparency = 1.000
+	ToggleName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ToggleName.BorderSizePixel = 0
+	ToggleName.Size = UDim2.new(1, 0, 1, 0)
+	ToggleName.Font = Enum.Font.Gotham
+	ToggleName.Text = Name
+	ToggleName.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ToggleName.TextSize = 14.000
+	ToggleName.TextXAlignment = Enum.TextXAlignment.Left
+
+	UIPadding_3.Parent = ToggleName
+	UIPadding_3.PaddingLeft = UDim.new(0, 10)
+
+	ToggleFrame.Name = "ToggleFrame"
+	ToggleFrame.Parent = Toggle
+	ToggleFrame.BackgroundColor3 = Color3.fromRGB(161, 79, 255)
+	ToggleFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ToggleFrame.BorderSizePixel = 0
+	ToggleFrame.Position = UDim2.new(0, 170, 0, 5)
+	ToggleFrame.Size = UDim2.new(0, 30, 0, 20)
+
+	ToggleFrameC.CornerRadius = UDim.new(0, 10)
+	ToggleFrameC.Name = "ToggleFrameC"
+	ToggleFrameC.Parent = ToggleFrame
+
+	ToggleButton.Name = "ToggleButton"
+	ToggleButton.Parent = ToggleFrame
+	ToggleButton.AnchorPoint = Vector2.new(0, 0.5)
+	ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ToggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ToggleButton.BorderSizePixel = 0
+	ToggleButton.Position = UDim2.new(0, 14, 0.5, 0)
+	ToggleButton.Size = UDim2.new(0, 14, 0, 14)
+	ToggleButton.AutoButtonColor = false
+	ToggleButton.Font = Enum.Font.SourceSans
+	ToggleButton.Text = ""
+	ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ToggleButton.TextSize = 14.000
+
+	ToggleButtonCorner.CornerRadius = UDim.new(1, 0)
+	ToggleButtonCorner.Name = "ToggleButtonCorner"
+	ToggleButtonCorner.Parent = ToggleButton
+
+	OptionsLayout.Name = "OptionsLayout"
+	OptionsLayout.Parent = Parent
+	OptionsLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	
+	return Toggle
+end
 
 local CombatTab = CreateTab("Combat")
 
-local KillAura = CreateToggle("KillAura", CombatTab, true, function(Callback)
-	print(Callback)
+
+task.spawn(function()
+	local KillAura, DropDownButton, Options = CreateToggle("KillAura", CombatTab, true, function(CallBack)
+		print(CallBack)
+	end)
+	
+	local CustomAnimationsValue = true
+	local CustomAnimations = nil
+	
+	DropDownButton.Activated:Connect(function()
+		if CustomAnimationsValue == true then
+			DropDownButton.Rotation = 90
+
+			CustomAnimations = CreateMiniToggle("CustomAnimations", Options, true, function(CallBack)
+				print(CallBack)
+			end)
+		end
+		
+		if CustomAnimationsValue == false then
+			DropDownButton.Rotation = 0
+			CustomAnimations:Destroy()
+		end
+		
+		CustomAnimationsValue = not CustomAnimationsValue
+	end)
 end)
