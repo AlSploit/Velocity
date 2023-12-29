@@ -203,7 +203,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	DropDownButton.Image = "http://www.roblox.com/asset/?id=6026663699"
 	DropDownButton.ScaleType = Enum.ScaleType.Fit
 
-	return Module, DropDownButton, Module.LayoutOrder
+	return Module, DropDownButton, ModuleButton.LayoutOrder
 end
 
 function CreateMiniToggle(Name, Parent, LayoutOrder, DefaultValue, CallBack)
