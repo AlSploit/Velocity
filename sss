@@ -143,7 +143,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 		if not Bool then
 			task.spawn(function()
 				CallBack(false)
-				ModuleButton.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+				ModuleButton.BackgroundColor3 = Color3.new(0.101961, 0.101961, 0.101961)
 			end)
 		else
 			task.spawn(function()
@@ -229,7 +229,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 		if not Bool then
 			task.spawn(function()
 				CallBack(false)
-				ToggleFrame.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+				ToggleFrame.BackgroundColor3 = Color3.new(0.101961, 0.101961, 0.101961)
 				
 				local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(-0.367, 14, 0.5, 0)})
@@ -323,7 +323,9 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 end
 
 local CombatTab = CreateTab("Combat")
-
+local BlatantTab = CreateTab("Combat")
+local UtilityTab = CreateTab("Combat")
+local WorldTab = CreateTab("Combat")
 
 task.spawn(function()
 	local KillAura, DropDownButton, Options = CreateToggle("KillAura", CombatTab, true, function(CallBack)
