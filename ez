@@ -265,11 +265,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 	Toggle.BackgroundTransparency = 1.000
 	Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Toggle.BorderSizePixel = 0
-	
-	local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
-	local SizeTween = TweenService:Create(ToggleButton, TweenInformation, {Size = UDim2.new(1, 0, 0, 30)})
-
-	SizeTween:Play()
+	Toggle.Size = UDim2.new(1, 0, 0, 30)
 
 	ToggleName.Name = "ToggleName"
 	ToggleName.Parent = Toggle
@@ -327,9 +323,9 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 end
 
 local CombatTab = CreateTab("Combat")
-local BlatantTab = CreateTab("Blatant")
-local UtilityTab = CreateTab("Utility")
-local WorldTab = CreateTab("World")
+local BlatantTab = CreateTab("Combat")
+local UtilityTab = CreateTab("Combat")
+local WorldTab = CreateTab("Combat")
 
 task.spawn(function()
 	local KillAura, DropDownButton, Options = CreateToggle("KillAura", CombatTab, true, function(CallBack)
@@ -346,6 +342,8 @@ task.spawn(function()
 
 			RotationTween:Play()
 
+			task.wait(0.2)
+
 			CustomAnimations = CreateMiniToggle("CustomAnimations", Options, true, function(CallBack)
 				print(CallBack)
 			end)
@@ -357,16 +355,44 @@ task.spawn(function()
 
 			RotationTween:Play()
 			
-			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
-			local SizeTween = TweenService:Create(CustomAnimations, TweenInformation, {Size = UDim2.new(1, 0, 0, 0)})
-
-			SizeTween:Play()
-			
-			task.wait(0.2)
-			
 			CustomAnimations:Destroy()
 		end
 		
+		CustomAnimationsValue = not CustomAnimationsValue
+	end)
+end)
+
+task.spawn(function()
+	local KillAura, DropDownButton, Options = CreateToggle("Velocity", CombatTab, true, function(CallBack)
+		print(CallBack)
+	end)
+
+	local CustomAnimationsValue = true
+	local CustomAnimations = nil
+
+	DropDownButton.Activated:Connect(function()
+		if CustomAnimationsValue == true then
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 90})
+
+			RotationTween:Play()
+
+			task.wait(0.2)
+
+			CustomAnimations = CreateMiniToggle("CustomAnimations", Options, true, function(CallBack)
+				print(CallBack)
+			end)
+		end
+
+		if CustomAnimationsValue == false then
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 0})
+
+			RotationTween:Play()
+
+			CustomAnimations:Destroy()
+		end
+
 		CustomAnimationsValue = not CustomAnimationsValue
 	end)
 end)
