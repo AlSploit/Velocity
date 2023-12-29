@@ -231,7 +231,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 				CallBack(false)
 				ToggleFrame.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
 				
-				local TweenInformation = TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+				local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(-0.367, 14, 0.5, 0)})
 				
 				PositionTween:Play()
@@ -241,7 +241,7 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 				CallBack(true)
 				ToggleFrame.BackgroundColor3 = Color3.new(0.635294, 0.313725, 1)
 				
-				local TweenInformation = TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+				local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(ToggleButton, TweenInformation, {Position = UDim2.new(0, 14 ,0.5, 0)})
 
 				PositionTween:Play()
@@ -335,7 +335,10 @@ task.spawn(function()
 	
 	DropDownButton.Activated:Connect(function()
 		if CustomAnimationsValue == true then
-			DropDownButton.Rotation = 90
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 90})
+
+			RotationTween:Play()
 
 			CustomAnimations = CreateMiniToggle("CustomAnimations", Options, true, function(CallBack)
 				print(CallBack)
@@ -343,7 +346,11 @@ task.spawn(function()
 		end
 		
 		if CustomAnimationsValue == false then
-			DropDownButton.Rotation = 0
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 0})
+
+			RotationTween:Play()
+			
 			CustomAnimations:Destroy()
 		end
 		
