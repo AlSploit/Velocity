@@ -135,9 +135,10 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	local UIPadding_2 = Instance.new("UIPadding")
 	local DropDownButton = Instance.new("ImageButton")
 	local ModuleUIListLayout = Instance.new("UIListLayout")
-	
-	local LayoutOrder
+
 	local Checker = {["Enabled"] = false}
+	
+	local LayoutOrder = 0
 
 	function Checker:Toggle(Bool)
 		Bool = Bool or (not Checker["Enabled"])
@@ -173,7 +174,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	Module.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Module.BorderSizePixel = 0
 	Module.Size = UDim2.new(1, 0, 0, 40)
-	Module.LayoutOrder = DefaultLayoutOrder + 5
+	Module.LayoutOrder = DefaultLayoutOrder + 10
 	
 	LayoutOrder = Module.LayoutOrder
 	DefaultLayoutOrder = LayoutOrder
@@ -341,7 +342,7 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder - 1, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
 				print(CallBack)
 			end)
 		end
@@ -374,7 +375,7 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder - 1, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
 				print(CallBack)
 			end)
 		end
