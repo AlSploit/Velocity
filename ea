@@ -195,12 +195,12 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	UIPadding_2.PaddingLeft = UDim.new(0, 13)
 	UIPadding_2.PaddingTop = UDim.new(0, 1)
 
-	DropDownButton.Parent = Module
+	DropDownButton.Parent = ModuleButton
 	DropDownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	DropDownButton.BackgroundTransparency = 1.000
 	DropDownButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	DropDownButton.BorderSizePixel = 0
-	DropDownButton.Position = UDim2.new(0, 187, 0, 14)
+	DropDownButton.Position = UDim2.new(0, 165, 0, 12)
 	DropDownButton.Rotation = 0
 	DropDownButton.Size = UDim2.new(0, 13, 0, 13)
 	DropDownButton.Image = "http://www.roblox.com/asset/?id=6026663699"
