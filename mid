@@ -265,7 +265,11 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 	Toggle.BackgroundTransparency = 1.000
 	Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Toggle.BorderSizePixel = 0
-	Toggle.Size = UDim2.new(1, 0, 0, 30)
+	
+	local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+	local SizeTween = TweenService:Create(ToggleButton, TweenInformation, {Size = UDim2.new(1, 0, 0, 30)})
+
+	SizeTween:Play()
 
 	ToggleName.Name = "ToggleName"
 	ToggleName.Parent = Toggle
@@ -323,9 +327,9 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 end
 
 local CombatTab = CreateTab("Combat")
-local BlatantTab = CreateTab("Combat")
-local UtilityTab = CreateTab("Combat")
-local WorldTab = CreateTab("Combat")
+local BlatantTab = CreateTab("Blatant")
+local UtilityTab = CreateTab("Utility")
+local WorldTab = CreateTab("World")
 
 task.spawn(function()
 	local KillAura, DropDownButton, Options = CreateToggle("KillAura", CombatTab, true, function(CallBack)
@@ -352,6 +356,13 @@ task.spawn(function()
 			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 0})
 
 			RotationTween:Play()
+			
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local SizeTween = TweenService:Create(CustomAnimations, TweenInformation, {Size = UDim2.new(1, 0, 0, 0)})
+
+			SizeTween:Play()
+			
+			task.wait(0.2)
 			
 			CustomAnimations:Destroy()
 		end
