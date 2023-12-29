@@ -134,7 +134,6 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	local ModuleButton = Instance.new("TextButton")
 	local UIPadding_2 = Instance.new("UIPadding")
 	local DropDownButton = Instance.new("ImageButton")
-	local ModuleUIListLayout = Instance.new("UIListLayout")
 
 	local Checker = {["Enabled"] = false}
 	
@@ -206,11 +205,6 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	DropDownButton.Size = UDim2.new(0, 13, 0, 13)
 	DropDownButton.Image = "http://www.roblox.com/asset/?id=6026663699"
 	DropDownButton.ScaleType = Enum.ScaleType.Fit
-	
-	ModuleUIListLayout.Parent = Module
-	ModuleUIListLayout.FillDirection = Enum.FillDirection.Vertical
-	ModuleUIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	ModuleUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 	return Module, DropDownButton, LayoutOrder
 end
@@ -344,6 +338,8 @@ task.spawn(function()
 
 			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
 				print(CallBack)
+				
+				print(LayoutOrder)
 			end)
 		end
 		
@@ -377,6 +373,8 @@ task.spawn(function()
 
 			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
 				print(CallBack)
+				
+				print(LayoutOrder)
 			end)
 		end
 
