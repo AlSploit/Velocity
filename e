@@ -35,6 +35,8 @@ task.spawn(function()
 	end)
 end)
 
+local DefaultLayoutOrder = 0
+
 function CreateTab(Name)
 	local Tab = Instance.new("Frame")
 	local TabCorner = Instance.new("UICorner")
@@ -49,7 +51,7 @@ function CreateTab(Name)
 
 	Tab.Name = "Tab"
 	Tab.Parent = ContainerFrame
-	Tab.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
+	Tab.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
 	Tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Tab.BorderSizePixel = 0
 	Tab.Position = UDim2.new(0, 0, 0, 0)
@@ -132,8 +134,9 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	local ModuleButton = Instance.new("TextButton")
 	local UIPadding_2 = Instance.new("UIPadding")
 	local DropDownButton = Instance.new("ImageButton")
-	local Options = Instance.new("Frame")
+	local ModuleUIListLayout = Instance.new("UIListLayout")
 	
+	local LayoutOrder
 	local Checker = {["Enabled"] = false}
 
 	function Checker:Toggle(Bool)
@@ -170,6 +173,10 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	Module.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Module.BorderSizePixel = 0
 	Module.Size = UDim2.new(1, 0, 0, 40)
+	Module.LayoutOrder = DefaultLayoutOrder + 5
+	
+	LayoutOrder = Module.LayoutOrder
+	DefaultLayoutOrder = LayoutOrder
 
 	ModuleButton.Name = "ModuleButton"
 	ModuleButton.Parent = Module
@@ -198,19 +205,16 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	DropDownButton.Size = UDim2.new(0, 13, 0, 13)
 	DropDownButton.Image = "http://www.roblox.com/asset/?id=6026663699"
 	DropDownButton.ScaleType = Enum.ScaleType.Fit
+	
+	ModuleUIListLayout.Parent = Module
+	ModuleUIListLayout.FillDirection = Enum.FillDirection.Vertical
+	ModuleUIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	ModuleUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-	Options.Name = "Options"
-	Options.Parent = Module
-	Options.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-	Options.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Options.BorderSizePixel = 0
-	Options.Position = UDim2.new(0, 0, 0, 40)
-	Options.Size = UDim2.new(1, 0, 0, 0)
-
-	return Module, DropDownButton, Options
+	return Module, DropDownButton, LayoutOrder
 end
 
-function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
+function CreateMiniToggle(Name, Parent, LayoutOrder, DefaultValue, CallBack)
 	local Toggle = Instance.new("Frame")
 	local ToggleName = Instance.new("TextLabel")
 	local UIPadding_3 = Instance.new("UIPadding")
@@ -323,12 +327,12 @@ function CreateMiniToggle(Name, Parent, DefaultValue, CallBack)
 end
 
 local CombatTab = CreateTab("Combat")
-local BlatantTab = CreateTab("Combat")
-local UtilityTab = CreateTab("Combat")
-local WorldTab = CreateTab("Combat")
+local BlatantTab = CreateTab("Blatant")
+local UtilityTab = CreateTab("Utility")
+local WorldTab = CreateTab("World")
 
 task.spawn(function()
-	local KillAura, DropDownButton, Options = CreateToggle("KillAura", CombatTab, true, function(CallBack)
+	local KillAura, DropDownButton, LayoutOrder = CreateToggle("KillAura", CombatTab, true, function(CallBack)
 		print(CallBack)
 	end)
 	
@@ -344,7 +348,7 @@ task.spawn(function()
 
 			task.wait(0.2)
 
-			CustomAnimations = CreateMiniToggle("CustomAnimations", Options, true, function(CallBack)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", KillAura, LayoutOrder, true, function(CallBack)
 				print(CallBack)
 			end)
 		end
@@ -358,41 +362,6 @@ task.spawn(function()
 			CustomAnimations:Destroy()
 		end
 		
-		CustomAnimationsValue = not CustomAnimationsValue
-	end)
-end)
-
-task.spawn(function()
-	local KillAura, DropDownButton, Options = CreateToggle("Velocity", CombatTab, true, function(CallBack)
-		print(CallBack)
-	end)
-
-	local CustomAnimationsValue = true
-	local CustomAnimations = nil
-
-	DropDownButton.Activated:Connect(function()
-		if CustomAnimationsValue == true then
-			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
-			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 90})
-
-			RotationTween:Play()
-
-			task.wait(0.2)
-
-			CustomAnimations = CreateMiniToggle("CustomAnimations", Options, true, function(CallBack)
-				print(CallBack)
-			end)
-		end
-
-		if CustomAnimationsValue == false then
-			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
-			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 0})
-
-			RotationTween:Play()
-
-			CustomAnimations:Destroy()
-		end
-
 		CustomAnimationsValue = not CustomAnimationsValue
 	end)
 end)
