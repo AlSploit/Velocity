@@ -1,5 +1,6 @@
 local LocalPlayer = game.Players.LocalPlayer
 
+local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 
 local Velocity = Instance.new("ScreenGui")
