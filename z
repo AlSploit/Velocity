@@ -131,15 +131,9 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	local ModuleButton = Instance.new("TextButton")
 	local UIPadding_2 = Instance.new("UIPadding")
 	local DropDownButton = Instance.new("ImageButton")
-	local Keybind = Instance.new("TextButton")
-	local KBPadding = Instance.new("UIPadding")
-	local KBCorner = Instance.new("UICorner")
-	local Keyboard = Instance.new("ImageLabel")
 	local Options = Instance.new("Frame")
-
-	local AssignKeyBind = false
+	
 	local Checker = {["Enabled"] = false}
-	local KeyBind = ""
 
 	function Checker:Toggle(Bool)
 		Bool = Bool or (not Checker["Enabled"])
@@ -167,36 +161,6 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 			Checker:Toggle()	
 		end)
 	end)	
-
-	task.spawn(function()
-		Keybind.Activated:Connect(function()
-			AssignKeyBind = true
-			Keybind.Text = "... | "
-		end)
-	end)
-
-	task.spawn(function()
-		UserInputService.InputBegan:Connect(function(Input)
-			if Input.KeyCode == KeyBind.Keycode then
-				Checker:Toggle()
-			end 
-			
-			if AssignKeyBind == true then
-				AssignKeyBind = false
-				
-				KeyBind = Input.Name
-				Keybind.Text = KeyBind .. "| "
-			end
-		end)
-	end)
-	
-	task.spawn(function()
-		UserInputService.InputBegan:Connect(function(Input)
-			if Input.KeyCode.Name == KeyBind then
-				Checker:Toggle()
-			end
-		end)
-	end)
 
 	Module.Name = "Module"
 	Module.Parent = Parent
@@ -233,38 +197,6 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	DropDownButton.Size = UDim2.new(0, 13, 0, 13)
 	DropDownButton.Image = "http://www.roblox.com/asset/?id=6026663699"
 	DropDownButton.ScaleType = Enum.ScaleType.Fit
-
-	Keybind.Name = "Keybind"
-	Keybind.Parent = Module
-	Keybind.AnchorPoint = Vector2.new(1, 0)
-	Keybind.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-	Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Keybind.BorderSizePixel = 0
-	Keybind.Position = UDim2.new(0.843, 0, 0.109, 0)
-	Keybind.Size = UDim2.new(0.209, 0, 0.136, 0)
-	Keybind.Font = Enum.Font.Gotham
-	Keybind.Text = "| "
-	Keybind.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Keybind.TextSize = 14.000
-
-	KBPadding.Name = "KBPadding"
-	KBPadding.Parent = Keybind
-	KBPadding.PaddingLeft = UDim.new(0, 5)
-	KBPadding.PaddingRight = UDim.new(0, 18)
-
-	KBCorner.Name = "KBCorner"
-	KBCorner.Parent = Keybind
-
-	Keyboard.Name = "Keyboard"
-	Keyboard.Parent = Keybind
-	Keyboard.AnchorPoint = Vector2.new(1, 0)
-	Keyboard.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Keyboard.BackgroundTransparency = 1.000
-	Keyboard.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Keyboard.BorderSizePixel = 0
-	Keyboard.Position = UDim2.new(1, 15, 0, 0)
-	Keyboard.Size = UDim2.new(0, 15, 0, 15)
-	Keyboard.Image = "http://www.roblox.com/asset/?id=6034818398"
 
 	Options.Name = "Options"
 	Options.Parent = Module
