@@ -320,8 +320,10 @@ local WorldTab = CreateTab("World")
 
 task.spawn(function()
 	local KillAura, DropDownButton, LayoutOrder = CreateToggle("KillAura", CombatTab, true, function(CallBack)
-		print(CallBack)
+		
 	end)
+	
+	print(LayoutOrder .. " Killaura")
 	
 	local CustomAnimationsValue = true
 	local CustomAnimations = nil
@@ -334,9 +336,7 @@ task.spawn(function()
 			RotationTween:Play()
 
 			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
-				print(CallBack)
-				
-				print(LayoutOrder)
+				print(LayoutOrder + 1 .. " CustomAnimations")
 			end)
 		end
 		
@@ -355,8 +355,10 @@ end)
 
 task.spawn(function()
 	local Velocity, DropDownButton, LayoutOrder = CreateToggle("Velocity", CombatTab, true, function(CallBack)
-		print(CallBack)
+		
 	end)
+	
+	print(LayoutOrder .. " Velocity")
 
 	local CustomAnimationsValue = true
 	local CustomAnimations = nil
@@ -369,9 +371,7 @@ task.spawn(function()
 			RotationTween:Play()
 
 			CustomAnimations = CreateMiniToggle("CustomAnimations", CombatTab, LayoutOrder + 1, true, function(CallBack)
-				print(CallBack)
-				
-				print(LayoutOrder)
+				print(LayoutOrder + 1 .. " CustomAnimations2")
 			end)
 		end
 
