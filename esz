@@ -240,7 +240,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	Keybind.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
 	Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Keybind.BorderSizePixel = 0
-	Keybind.Position = UDim2.new(0.9, -30, 0, 12)
+	Keybind.Position = UDim2.new(0.843, 0, 0.109, 0)
 	Keybind.Size = UDim2.new(0.209, 0, 0.136, 0)
 	Keybind.Font = Enum.Font.Gotham
 	Keybind.Text = "| "
