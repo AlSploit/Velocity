@@ -173,10 +173,6 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	Module.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Module.BorderSizePixel = 0
 	Module.Size = UDim2.new(1, 0, 0, 40)
-	Module.LayoutOrder = DefaultLayoutOrder + 10
-	
-	LayoutOrder = Module.LayoutOrder
-	DefaultLayoutOrder = LayoutOrder
 
 	ModuleButton.Name = "ModuleButton"
 	ModuleButton.Parent = Module
@@ -190,6 +186,11 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	ModuleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	ModuleButton.TextSize = 14.000
 	ModuleButton.TextXAlignment = Enum.TextXAlignment.Left
+	
+	ModuleButton.LayoutOrder = DefaultLayoutOrder + 10
+
+	LayoutOrder = ModuleButton.LayoutOrder
+	DefaultLayoutOrder = LayoutOrder
 
 	UIPadding_2.Parent = ModuleButton
 	UIPadding_2.PaddingLeft = UDim.new(0, 13)
