@@ -172,7 +172,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 	Module.BorderSizePixel = 0
 	Module.Size = UDim2.new(1, 0, 0, 40)
 	
-	Module.LayoutOrder = DefaultLayoutOrder + 10
+	Module.LayoutOrder = DefaultLayoutOrder + 5
 	DefaultLayoutOrder = Module.LayoutOrder
 
 	ModuleButton.Name = "ModuleButton"
