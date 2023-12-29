@@ -346,8 +346,6 @@ task.spawn(function()
 
 			RotationTween:Play()
 
-			task.wait(0.2)
-
 			CustomAnimations = CreateMiniToggle("CustomAnimations", KillAura, LayoutOrder, true, function(CallBack)
 				print(CallBack)
 			end)
@@ -362,6 +360,39 @@ task.spawn(function()
 			CustomAnimations:Destroy()
 		end
 		
+		CustomAnimationsValue = not CustomAnimationsValue
+	end)
+end)
+
+task.spawn(function()
+	local KillAura, DropDownButton, LayoutOrder = CreateToggle("KillAure", CombatTab, true, function(CallBack)
+		print(CallBack)
+	end)
+
+	local CustomAnimationsValue = true
+	local CustomAnimations = nil
+
+	DropDownButton.Activated:Connect(function()
+		if CustomAnimationsValue == true then
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 90})
+
+			RotationTween:Play()
+
+			CustomAnimations = CreateMiniToggle("CustomAnimations", KillAura, LayoutOrder, true, function(CallBack)
+				print(CallBack)
+			end)
+		end
+
+		if CustomAnimationsValue == false then
+			local TweenInformation = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
+			local RotationTween = TweenService:Create(DropDownButton, TweenInformation, {Rotation = 0})
+
+			RotationTween:Play()
+
+			CustomAnimations:Destroy()
+		end
+
 		CustomAnimationsValue = not CustomAnimationsValue
 	end)
 end)
