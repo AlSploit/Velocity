@@ -25,7 +25,7 @@ UIListLayout.Parent = ContainerFrame
 UIListLayout.FillDirection = Enum.FillDirection.Horizontal
 UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-UIListLayout.Padding = UDim.new(0, 85)
+UIListLayout.Padding = UDim.new(0, 30)
 
 task.spawn(function()
 	UserInputService.InputBegan:Connect(function(Input)
