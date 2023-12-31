@@ -484,7 +484,7 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 
 				local Position = Snap((MousePosition - FramePosition) / FrameSize, 0.01)
 
-				local Percentage = math.clamp(Position, 0, 0.99999)
+				local Percentage = math.clamp(Position, 0, 0.99)
 
 				local TweenInformation = TweenInfo.new(0.05, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(FillCircle, TweenInformation, {Position = UDim2.new(Percentage, 0, BarPosition.Y.Scale, BarPosition.Y.Offset)})
