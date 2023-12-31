@@ -363,6 +363,7 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 	Slider.BorderSizePixel = 0
 	Slider.LayoutOrder = 10
 	Slider.Size = UDim2.new(0, 210, 0, 40)
+	Slider.LayoutOrder = LayoutOrder
 
 	SliderName.Name = "SliderName"
 	SliderName.Parent = Slider
@@ -624,7 +625,7 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.Aimbot.Range, 5000, LayoutOrder + 1, function(Callback)
+			Range = CreateSlider("Range", ComabatTab, Settings.Aimbot.Range, 2000, LayoutOrder + 1, function(Callback)
 				Settings.Aimbot.Range = Callback
 			end)
 		end
