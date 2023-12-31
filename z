@@ -484,7 +484,7 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 
 				local Position = Snap((MousePosition - FramePosition) / FrameSize, 0.01)
 
-				local Percentage = math.clamp(Position, 0, 0.95)
+				local Percentage = math.clamp(Position, 0, 0.99999)
 
 				local TweenInformation = TweenInfo.new(0.05, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false, 0)
 				local PositionTween = TweenService:Create(FillCircle, TweenInformation, {Position = UDim2.new(Percentage, 0, BarPosition.Y.Scale, BarPosition.Y.Offset)})
@@ -507,34 +507,34 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 end
 
 local Settings = {
-	NoClickDelay = {Value = true},--
-	FastConsume = {Value = true},--
-	AutoClicker = {Value = false},--
-	InfiniteFly = {Value = false, Speed = 23},--
-	DamageBoost = {Value = true},--
-	AutoSprint = {Value = true},--
-	FovChanger = {Value = true, Fov = 120},--
-	NoSlowDown = {Value = true},--
-	DamageFly = {Value = true},--
-	PlayAgain = {Value = true},--
-	HighJump = {Value = true},--
-	KillAura = {Value = true, DiamondGuardians = true, CustomAnimation = true, Range = 18}, --
-	Velocity = {Value = true}, --
-	FpsBoost = {Value = true},--
-	Scaffhold = {Value = false},--
-	AntiVoid = {Value = true, Transparency = 0.65},--
-	AutoBank = {Value = true},--
-	PlayerTp = {Value = true},--
-	AntiAfk = {Value = true},--
-	Gravity = {Value = false, Amount = 196},--
-	AutoBuy = {Value = true},--
-	AntiBan = {Value = true},--
-	DeathTp = {Value = false},--
-	Aimbot = {Value = true},--
-	NoClip = {Value = false},--
-	NoFall = {Value = true},--
+	NoClickDelay = {Value = true},
+	FastConsume = {Value = true},
+	AutoClicker = {Value = false},
+	InfiniteFly = {Value = false, Speed = 23},
+	DamageBoost = {Value = true},
+	AutoSprint = {Value = true},
+	FovChanger = {Value = true, Fov = 120},
+	NoSlowDown = {Value = true},
+	DamageFly = {Value = true},
+	PlayAgain = {Value = true},
+	HighJump = {Value = true},
+	KillAura = {Value = true, DiamondGuardians = true, CustomAnimation = true, Range = 18}, 
+	Velocity = {Value = true}, 
+	FpsBoost = {Value = true},
+	Scaffhold = {Value = false},
+	AntiVoid = {Value = true, Transparency = 0.65},
+	AutoBank = {Value = true},
+	PlayerTp = {Value = true},
+	AntiAfk = {Value = true},
+	Gravity = {Value = false, Amount = 196},
+	AutoBuy = {Value = true},
+	AntiBan = {Value = true},
+	DeathTp = {Value = false},
+	Aimbot = {Value = true},
+	NoClip = {Value = false},
+	NoFall = {Value = true},
 	Nuker = {Value = true, BreakOres = true, Range = 30},
-	Reach = {Value = true, Range = 18},--
+	Reach = {Value = true, Range = 18},
 	Speed = {Value = true, Amount = 23},
 	BedTp = {Value = false},
 	Fly = {Value = false},
@@ -562,6 +562,12 @@ end)
 task.spawn(function()
 	local AutoClicker = CreateToggle("AutoClicker", ComabatTab, Settings.AutoClicker.Value, function(CallBack)
 		Settings.AutoClicker.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local Velocity = CreateToggle("Velocity", ComabatTab, Settings.Velocity.Value, function(CallBack)
+		Settings.Velocity.Value = CallBack
 	end)
 end)
 
@@ -617,12 +623,6 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	local Velocity = CreateToggle("Velocity", ComabatTab, Settings.Velocity.Value, function(CallBack)
-		Settings.Velocity.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
 	local Aimbot, DropDownButton, LayoutOrder = CreateToggle("Aimbot", ComabatTab, Settings.Aimbot.Value, function(CallBack)
 		Settings.Aimbot.Value = CallBack
 	end)
@@ -658,20 +658,26 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	local InfiniteFly = CreateToggle("InfiniteFly", BlatantTab, Settings.InfiniteFly.Value, function(CallBack)
-		Settings.InfiniteFly.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
 	local HighJump = CreateToggle("HighJump", BlatantTab, Settings.HighJump.Value, function(CallBack)
 		Settings.HighJump.Value = CallBack
 	end)
 end)
 
 task.spawn(function()
+	local InfiniteFly = CreateToggle("InfiniteFly", BlatantTab, Settings.InfiniteFly.Value, function(CallBack)
+		Settings.InfiniteFly.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local Scaffhold = CreateToggle("Scaffhold", BlatantTab, Settings.Scaffhold.Value, function(CallBack)
 		Settings.Scaffhold.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local AutoBuy = CreateToggle("AutoBuy", BlatantTab, Settings.AutoBuy.Value, function(CallBack)
+		Settings.AutoBuy.Value = CallBack
 	end)
 end)
 
@@ -699,12 +705,6 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	local AutoBuy = CreateToggle("AutoBuy", BlatantTab, Settings.AutoBuy.Value, function(CallBack)
-		Settings.AutoBuy.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
 	local AntiBan = CreateToggle("AntiBan", BlatantTab, Settings.AntiBan.Value, function(CallBack)
 		Settings.AntiBan.Value = CallBack
 	end)
@@ -723,8 +723,37 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local Speed, DropDownButton, LayoutOrder = CreateToggle("Speed", BlatantTab, Settings.Speed.Value, function(CallBack)
+		Settings.Speed.Value = CallBack
+	end)
+	
+	local AmountValue = true
+	local Amount
+
+	DropDownButton.Activated:Connect(function()
+		if AmountValue == true then
+			Amount = CreateSlider("Amount", BlatantTab, Settings.Speed.Amount, 23, LayoutOrder + 1, function(Callback)
+				Settings.Amount.Range = Callback
+			end)
+		end
+		
+		if AmountValue == false then
+			Amount:Destroy()
+		end
+		
+		AmountValue = not AmountValue
+	end)
+end)
+
+task.spawn(function()
 	local Fly = CreateToggle("Fly", BlatantTab, Settings.Fly.Value, function(CallBack)
 		Settings.Fly.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local Sky = CreateToggle("Sky", BlatantTab, Settings.Sky.Value, function(CallBack)
+		Settings.Sky.Value = CallBack
 	end)
 end)
 
@@ -771,6 +800,12 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local AutoBank = CreateToggle("AutoBank", UtilityTab, Settings.AutoBank.Value, function(CallBack)
+		Settings.AutoBank.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local PlayAgain = CreateToggle("PlayAgain", UtilityTab, Settings.PlayAgain.Value, function(CallBack)
 		Settings.PlayAgain.Value = CallBack
 	end)
@@ -783,20 +818,26 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	local AutoBank = CreateToggle("AutoBank", UtilityTab, Settings.AutoBank.Value, function(CallBack)
-		Settings.AutoBank.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
 	local AntiAfk = CreateToggle("AntiAfk", UtilityTab, Settings.AntiAfk.Value, function(CallBack)
 		Settings.AntiAfk.Value = CallBack
 	end)
 end)
 
 task.spawn(function()
+	local Esp = CreateToggle("Esp", UtilityTab, Settings.Esp.Value, function(CallBack)
+		Settings.Esp.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local PlayerTp = CreateToggle("PlayerTp", WorldTab, Settings.PlayerTp.Value, function(CallBack)
 		Settings.PlayerTp.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local DeathTp = CreateToggle("DeathTp", WorldTab, Settings.DeathTp.Value, function(CallBack)
+		Settings.DeathTp.Value = CallBack
 	end)
 end)
 
@@ -824,7 +865,44 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	local DeathTp = CreateToggle("DeathTp", WorldTab, Settings.DeathTp.Value, function(CallBack)
-		Settings.DeathTp.Value = CallBack
+	local BedTp = CreateToggle("BedTp", WorldTab, Settings.BedTp.Value, function(CallBack)
+		Settings.BedTp.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local Nuker, DropDownButton, LayoutOrder = CreateToggle("Nuker", WorldTab, Settings.Nuker.Value, function(CallBack)
+		Settings.Nuker.Value = CallBack
+	end)
+	
+	local BreakOresValue = true
+	local BreakOres
+
+	local RangeValue = true
+	local Range
+
+	DropDownButton.Activated:Connect(function()
+		if BreakOresValue == true then
+			BreakOres = CreateMiniToggle("BreakOres", WorldTab, Settings.Nuker.BreakOres, LayoutOrder + 1, function(Callback)
+				Settings.Nuker.BreakOres = Callback
+			end)
+		end
+
+		if RangeValue == true then
+			Range = CreateSlider("Range", WorldTab, Settings.Nuker.Range, 30, LayoutOrder + 2, function(Callback)
+				Settings.Nuker.Range = Callback
+			end)
+		end
+
+		if BreakOresValue == false then
+			BreakOres:Destroy()
+		end
+
+		if RangeValue == false then
+			Range:Destroy()
+		end
+
+		BreakOresValue = not BreakOresValue
+		RangeValue = not RangeValue
 	end)
 end)
