@@ -514,9 +514,9 @@ local Settings = {
 	DamageBoost = {Value = true},--
 	AutoSprint = {Value = true},--
 	FovChanger = {Value = true, Fov = 120},--
-	NoSlowDown = {Value = true},
-	DamageFly = {Value = true},
-	PlayAgain = {Value = true},
+	NoSlowDown = {Value = true},--
+	DamageFly = {Value = true},--
+	PlayAgain = {Value = true},--
 	HighJump = {Value = true},
 	KillAura = {Value = true, DiamondGuardians = true, CustomAnimation = true, Range = 18}, --
 	Velocity = {Value = true}, --
@@ -536,7 +536,7 @@ local Settings = {
 	Nuker = {Value = true, BreakOres = true, Range = 30},
 	Reach = {Value = true, Range = 18},--
 	BedTp = {Value = false},
-	Fly = {Value = false, Speed = 23},
+	Fly = {Value = false},
 	Esp = {Value = true},
 	Sky = {Value = true}
 }
@@ -651,8 +651,20 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local DamageFly = CreateToggle("DamageFly", BlatantTab, Settings.DamageFly.Value, function(CallBack)
+		Settings.DamageFly.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local InfiniteFly = CreateToggle("InfiniteFly", BlatantTab, Settings.InfiniteFly.Value, function(CallBack)
 		Settings.InfiniteFly.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local HighJump = CreateToggle("HighJump", BlatantTab, Settings.HighJump.Value, function(CallBack)
+		Settings.HighJump.Value = CallBack
 	end)
 end)
 
@@ -695,5 +707,11 @@ end)
 task.spawn(function()
 	local AutoSprint = CreateToggle("AutoSprint", UtilityTab, Settings.AutoSprint.Value, function(CallBack)
 		Settings.AutoSprint.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local PlayAgain = CreateToggle("PlayAgain", UtilityTab, Settings.PlayAgain.Value, function(CallBack)
+		Settings.PlayAgain.Value = CallBack
 	end)
 end)
