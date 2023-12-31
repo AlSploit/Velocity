@@ -237,7 +237,7 @@ function CreateToggle(Name, Parent, DefaultValue, CallBack)
 		end)
 	end)
 
-	return Toggle, DropDownButton, DefaultLayoutOrder
+	return Toggle, DropDownButton, Toggle.LayoutOrder
 end
 
 function CreateMiniToggle(Name, Parent, DefaultValue, LayoutOrder, CallBack)
@@ -562,6 +562,8 @@ task.spawn(function()
 		Settings.KillAura.Value = CallBack
 	end)
 	
+	print(LayoutOrder)
+	
 	local DiamondGuardiansValue = true
 	local DiamondGuardians
 
@@ -579,13 +581,13 @@ task.spawn(function()
 		end
 		
 		if CustomAnimationsValue == true then
-			CustomAnimations = CreateMiniToggle("CustomAnimations", ComabatTab, Settings.KillAura.CustomAnimation, LayoutOrder + 1, function(Callback)
+			CustomAnimations = CreateMiniToggle("CustomAnimations", ComabatTab, Settings.KillAura.CustomAnimation, LayoutOrder + 2, function(Callback)
 				Settings.KillAura.CustomAnimation = Callback
 			end)
 		end
 
 		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.KillAura.Range, 18, LayoutOrder + 1, function(Callback)
+			Range = CreateSlider("Range", ComabatTab, Settings.KillAura.Range, 18, LayoutOrder + 3, function(Callback)
 				Settings.KillAura.Range = Callback
 			end)
 		end
