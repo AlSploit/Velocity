@@ -363,6 +363,7 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 	Slider.BorderSizePixel = 0
 	Slider.LayoutOrder = 10
 	Slider.Size = UDim2.new(0, 210, 0, 40)
+	Slider.LayoutOrder = LayoutOrder
 
 	SliderName.Name = "SliderName"
 	SliderName.Parent = Slider
