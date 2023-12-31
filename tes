@@ -549,7 +549,7 @@ task.spawn(function()
 	local KillAura, DropDownButton, LayoutOrder = CreateToggle("KillAura", ComabatTab, Settings.KillAura.Value, function(CallBack)
 		Settings.KillAura.Value = CallBack
 	end)
-
+	
 	local DiamondGuardiansValue = true
 	local DiamondGuardians
 
@@ -599,5 +599,28 @@ end)
 task.spawn(function()
 	local Velocity = CreateToggle("Velocity", ComabatTab, Settings.Velocity.Value, function(CallBack)
 		Settings.Velocity.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local Reach, DropDownButton, LayoutOrder = CreateToggle("Reach", ComabatTab, Settings.Reach.Value, function(CallBack)
+		Settings.Reach.Value = CallBack
+	end)
+	
+	local RangeValue = true
+	local Range
+
+	DropDownButton.Activated:Connect(function()
+		if RangeValue == true then
+			Range = CreateSlider("Range", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
+				Settings.Reach.Range = Callback
+			end)
+		end
+
+		if RangeValue == false then
+			Range:Destroy()
+		end
+
+		RangeValue = not RangeValue
 	end)
 end)
