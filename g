@@ -517,12 +517,12 @@ local Settings = {
 	NoSlowDown = {Value = true},--
 	DamageFly = {Value = true},--
 	PlayAgain = {Value = true},--
-	HighJump = {Value = true},
+	HighJump = {Value = true},--
 	KillAura = {Value = true, DiamondGuardians = true, CustomAnimation = true, Range = 18}, --
 	Velocity = {Value = true}, --
-	FpsBoost = {Value = true},
-	Scaffhold = {Value = false},
-	AntiVoid = {Value = true, TransParency = 0.65},
+	FpsBoost = {Value = true},--
+	Scaffhold = {Value = false},--
+	AntiVoid = {Value = true, Transparency = 0.65},--
 	AutoBank = {Value = true},
 	PlayerTp = {Value = true},
 	AntiAfk = {Value = true},
@@ -663,6 +663,12 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local Scaffhold = CreateToggle("Scaffhold", BlatantTab, Settings.Scaffhold.Value, function(CallBack)
+		Settings.Scaffhold.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local HighJump = CreateToggle("HighJump", BlatantTab, Settings.HighJump.Value, function(CallBack)
 		Settings.HighJump.Value = CallBack
 	end)
@@ -713,5 +719,34 @@ end)
 task.spawn(function()
 	local PlayAgain = CreateToggle("PlayAgain", UtilityTab, Settings.PlayAgain.Value, function(CallBack)
 		Settings.PlayAgain.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local FpsBoost = CreateToggle("FpsBoost", UtilityTab, Settings.FpsBoost.Value, function(CallBack)
+		Settings.FpsBoost.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local AntiVoid, DropDownButton, LayoutOrder = CreateToggle("AntiVoid", WorldTab, Settings.AntiVoid.Value, function(CallBack)
+		Settings.AntiVoid.Value = CallBack
+	end)
+	
+	local TransparencyValue = true
+	local Transparency
+
+	DropDownButton.Activated:Connect(function()
+		if TransparencyValue == true then
+			Transparency = CreateSlider("Transparency", WorldTab, Settings.AntiVoid.Transparency, 100, LayoutOrder + 1, function(Callback)
+				Settings.AntiVoid.Transparency = Callback / 100
+			end)
+		end
+
+		if TransparencyValue == false then
+			Transparency:Destroy()
+		end
+
+		TransparencyValue = not TransparencyValue
 	end)
 end)
