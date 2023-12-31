@@ -2,8 +2,13 @@ local VelocityApi = {}
 
 local LocalPlayer = game.Players.LocalPlayer
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local KnitClient = debug.getupvalue(require(LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 
+VelocityApi.Client = require(ReplicatedStorage.TS.remotes).default.Client
+
+VelocityApi.SprintController = KnitClient.Controllers.SprintController
 VelocityApi.SwordController = KnitClient.Controllers.SwordController
 
 return VelocityApi
