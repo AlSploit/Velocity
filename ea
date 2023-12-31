@@ -631,6 +631,23 @@ task.spawn(function()
 	local Reach, DropDownButton, LayoutOrder = CreateToggle("Reach", ComabatTab, Settings.Reach.Value, function(CallBack)
 		Settings.Reach.Value = CallBack
 	end)
+	
+	local RangeValue = true
+	local Range
+
+	DropDownButton.Activated:Connect(function()
+		if RangeValue == true then
+			Range = CreateSlider("FovChanger", UtilityTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
+				Settings.Reach.Range = Callback
+			end)
+		end
+
+		if RangeValue == false then
+			Range:Destroy()
+		end
+
+		RangeValue = not RangeValue
+	end)
 end)
 
 task.spawn(function()
@@ -661,8 +678,8 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if FovChangerValue == true then
-			FovChanger = CreateSlider("FovChanger", ComabatTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
-				Settings.Aimbot.Range = Callback
+			FovChanger = CreateSlider("FovChanger", UtilityTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
+				Settings.FovChanger.Fov = Callback
 			end)
 		end
 
