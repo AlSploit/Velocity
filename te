@@ -506,9 +506,9 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 end
 
 local Settings = {
-	NoClickDelay = {Value = true},--
+	NoClickDelay = {Value = true},
 	FastConsume = {Value = true},
-	AutoClicker = {Value = false},--
+	AutoClicker = {Value = false},
 	InfiniteFly = {Value = false, Speed = 23},
 	DamageBoost = {Value = true},
 	AutoSprint = {Value = true},
@@ -517,8 +517,8 @@ local Settings = {
 	DamageFly = {Value = true},
 	PlayAgain = {Value = true},
 	HighJump = {Value = true},
-	KillAura = {Value = true, DiamondGuardians = true, CustomAnimation = true, Range = 18}, --
-	Velocity = {Value = true}, --
+	KillAura = {Value = true, DiamondGuardians = true, CustomAnimation = true, Range = 18},
+	Velocity = {Value = true},
 	FpsBoost = {Value = true},
 	Scaffhold = {Value = false},
 	AntiVoid = {Value = true, TransParency = 0.65},
@@ -533,7 +533,7 @@ local Settings = {
 	NoClip = {Value = false},
 	NoFall = {Value = true},
 	Nuker = {Value = true, BreakOres = true, Range = 30},
-	Reach = {Value = true, Range = 18},--
+	Reach = {Value = true, Range = 18},
 	BedTp = {Value = false},
 	Fly = {Value = false, Speed = 23},
 	Esp = {Value = true},
@@ -546,24 +546,10 @@ local UtilityTab = CreateTab("Utility")
 local WorldTab = CreateTab("World")
 
 task.spawn(function()
-	local NoClickDelay = CreateToggle("NoClickDelay", ComabatTab, Settings.NoClickDelay.Value, function(CallBack)
-		Settings.NoClickDelay.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
-	local AutoClicker = CreateToggle("AutoClicker", ComabatTab, Settings.AutoClicker.Value, function(CallBack)
-		Settings.AutoClicker.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
 	local KillAura, DropDownButton, LayoutOrder = CreateToggle("KillAura", ComabatTab, Settings.KillAura.Value, function(CallBack)
 		Settings.KillAura.Value = CallBack
 	end)
-	
-	print(LayoutOrder)
-	
+
 	local DiamondGuardiansValue = true
 	local DiamondGuardians
 
@@ -613,28 +599,5 @@ end)
 task.spawn(function()
 	local Velocity = CreateToggle("Velocity", ComabatTab, Settings.Velocity.Value, function(CallBack)
 		Settings.Velocity.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
-	local Reach, DropDownButton, LayoutOrder = CreateToggle("Reach", ComabatTab, Settings.Reach.Value, function(CallBack)
-		Settings.Reach.Value = CallBack
-	end)
-	
-	local RangeValue = true
-	local Range
-
-	DropDownButton.Activated:Connect(function()
-		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
-				Settings.Reach.Range = Callback
-			end)
-		end
-
-		if RangeValue == false then
-			Range:Destroy()
-		end
-
-		RangeValue = not RangeValue
 	end)
 end)
