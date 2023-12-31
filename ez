@@ -637,7 +637,7 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if RangeValue == true then
-			Range = CreateSlider("Fov", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
+			Range = CreateSlider("Range", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
 				Settings.Reach.Range = Callback
 			end)
 		end
@@ -678,7 +678,7 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if FovChangerValue == true then
-			FovChanger = CreateSlider("FovChanger", UtilityTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
+			FovChanger = CreateSlider("Fov", UtilityTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
 				Settings.FovChanger.Fov = Callback
 			end)
 		end
