@@ -547,6 +547,12 @@ local UtilityTab = CreateTab("Utility")
 local WorldTab = CreateTab("World")
 
 task.spawn(function()
+	local DamageBoost = CreateToggle("DamageBoost", ComabatTab, Settings.DamageBoost.Value, function(CallBack)
+		Settings.DamageBoost.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local NoClickDelay = CreateToggle("NoClickDelay", ComabatTab, Settings.NoClickDelay.Value, function(CallBack)
 		Settings.NoClickDelay.Value = CallBack
 	end)
@@ -555,12 +561,6 @@ end)
 task.spawn(function()
 	local AutoClicker = CreateToggle("AutoClicker", ComabatTab, Settings.AutoClicker.Value, function(CallBack)
 		Settings.AutoClicker.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
-	local DamageBoost = CreateToggle("DamageBoost", ComabatTab, Settings.DamageBoost.Value, function(CallBack)
-		Settings.DamageBoost.Value = CallBack
 	end)
 end)
 
@@ -637,7 +637,7 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if RangeValue == true then
-			Range = CreateSlider("FovChanger", UtilityTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
+			Range = CreateSlider("Fov", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
 				Settings.Reach.Range = Callback
 			end)
 		end
