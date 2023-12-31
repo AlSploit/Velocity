@@ -1,3 +1,9 @@
 local VelocityApi = {}
 
+local LocalPlayer = game.Players.LocalPlayer
+
+local KnitClient = debug.getupvalue(require(LocalPlayer.PlayerScripts.TS.knit).setup, 6)
+
+VelocityApi.SwordController = KnitClient.Controllers.SwordController
+
 return VelocityApi
