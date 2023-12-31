@@ -496,9 +496,9 @@ function CreateSlider(Name, Parent, DefaultValue, MaximumValue, LayoutOrder, Cal
 
 				SizeTween:Play()
 
-				SliderValue.Text = math.round(Percentage * MaximumValue + 1)
+				SliderValue.Text = math.round(Percentage * MaximumValue)
 
-				CallBack(math.round(Percentage * MaximumValue + 1))
+				CallBack(math.round(Percentage * MaximumValue))
 			end
 		until not Slider
 	end)
@@ -705,12 +705,6 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-	local AntiBan = CreateToggle("AntiBan", BlatantTab, Settings.AntiBan.Value, function(CallBack)
-		Settings.AntiBan.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
 	local NoClip = CreateToggle("NoClip", BlatantTab, Settings.NoClip.Value, function(CallBack)
 		Settings.NoClip.Value = CallBack
 	end)
@@ -748,12 +742,6 @@ end)
 task.spawn(function()
 	local Fly = CreateToggle("Fly", BlatantTab, Settings.Fly.Value, function(CallBack)
 		Settings.Fly.Value = CallBack
-	end)
-end)
-
-task.spawn(function()
-	local Sky = CreateToggle("Sky", BlatantTab, Settings.Sky.Value, function(CallBack)
-		Settings.Sky.Value = CallBack
 	end)
 end)
 
@@ -814,6 +802,12 @@ end)
 task.spawn(function()
 	local FpsBoost = CreateToggle("FpsBoost", UtilityTab, Settings.FpsBoost.Value, function(CallBack)
 		Settings.FpsBoost.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local AntiBan = CreateToggle("AntiBan", UtilityTab, Settings.AntiBan.Value, function(CallBack)
+		Settings.AntiBan.Value = CallBack
 	end)
 end)
 
@@ -904,5 +898,11 @@ task.spawn(function()
 
 		BreakOresValue = not BreakOresValue
 		RangeValue = not RangeValue
+	end)
+end)
+
+task.spawn(function()
+	local Sky = CreateToggle("Sky", WorldTab, Settings.Sky.Value, function(CallBack)
+		Settings.Sky.Value = CallBack
 	end)
 end)
