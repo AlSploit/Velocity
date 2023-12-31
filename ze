@@ -536,7 +536,8 @@ local Settings = {
 	Reach = {Value = true, Range = 18},--
 	BedTp = {Value = false},
 	Fly = {Value = false, Speed = 23},
-	Esp = {Value = true}
+	Esp = {Value = true},
+	Sky = {Value = true}
 }
 
 local ComabatTab = CreateTab("Combat")
