@@ -523,18 +523,19 @@ local Settings = {
 	FpsBoost = {Value = true},--
 	Scaffhold = {Value = false},--
 	AntiVoid = {Value = true, Transparency = 0.65},--
-	AutoBank = {Value = true},
-	PlayerTp = {Value = true},
-	AntiAfk = {Value = true},
-	Gravity = {Value = false, Amount = 196},
-	AutoBuy = {Value = true},
-	AntiBan = {Value = true},
-	DeathTp = {Value = false},
-	Aimbot = {Value = true},
-	NoClip = {Value = false},
-	NoFall = {Value = true},
+	AutoBank = {Value = true},--
+	PlayerTp = {Value = true},--
+	AntiAfk = {Value = true},--
+	Gravity = {Value = false, Amount = 196},--
+	AutoBuy = {Value = true},--
+	AntiBan = {Value = true},--
+	DeathTp = {Value = false},--
+	Aimbot = {Value = true},--
+	NoClip = {Value = false},--
+	NoFall = {Value = true},--
 	Nuker = {Value = true, BreakOres = true, Range = 30},
 	Reach = {Value = true, Range = 18},--
+	Speed = {Value = true, Amount = 23},
 	BedTp = {Value = false},
 	Fly = {Value = false},
 	Esp = {Value = true},
@@ -663,14 +664,67 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local HighJump = CreateToggle("HighJump", BlatantTab, Settings.HighJump.Value, function(CallBack)
+		Settings.HighJump.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local Scaffhold = CreateToggle("Scaffhold", BlatantTab, Settings.Scaffhold.Value, function(CallBack)
 		Settings.Scaffhold.Value = CallBack
 	end)
 end)
 
 task.spawn(function()
-	local HighJump = CreateToggle("HighJump", BlatantTab, Settings.HighJump.Value, function(CallBack)
-		Settings.HighJump.Value = CallBack
+	local Gravity, DropDownButton, LayoutOrder = CreateToggle("Gravity", BlatantTab, Settings.Gravity.Value, function(CallBack)
+		Settings.Gravity.Value = CallBack
+	end)
+	
+	local AmountValue = true
+	local Amount
+
+	DropDownButton.Activated:Connect(function()
+		if AmountValue == true then
+			Amount = CreateSlider("Amount", BlatantTab, Settings.Gravity.Amount, 196, LayoutOrder + 1, function(Callback)
+				Settings.Gravity.Amount = Callback
+			end)
+		end
+
+		if AmountValue == false then
+			Amount:Destroy()
+		end
+
+		AmountValue = not AmountValue
+	end)
+end)
+
+task.spawn(function()
+	local AutoBuy = CreateToggle("AutoBuy", BlatantTab, Settings.AutoBuy.Value, function(CallBack)
+		Settings.AutoBuy.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local AntiBan = CreateToggle("AntiBan", BlatantTab, Settings.AntiBan.Value, function(CallBack)
+		Settings.AntiBan.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local NoClip = CreateToggle("NoClip", BlatantTab, Settings.NoClip.Value, function(CallBack)
+		Settings.NoClip.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local NoFall = CreateToggle("NoFall", BlatantTab, Settings.NoFall.Value, function(CallBack)
+		Settings.NoFall.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local Fly = CreateToggle("Fly", BlatantTab, Settings.Fly.Value, function(CallBack)
+		Settings.Fly.Value = CallBack
 	end)
 end)
 
@@ -729,6 +783,24 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local AutoBank = CreateToggle("AutoBank", UtilityTab, Settings.AutoBank.Value, function(CallBack)
+		Settings.AutoBank.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local AntiAfk = CreateToggle("AntiAfk", UtilityTab, Settings.AntiAfk.Value, function(CallBack)
+		Settings.AntiAfk.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local PlayerTp = CreateToggle("PlayerTp", WorldTab, Settings.PlayerTp.Value, function(CallBack)
+		Settings.PlayerTp.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
 	local AntiVoid, DropDownButton, LayoutOrder = CreateToggle("AntiVoid", WorldTab, Settings.AntiVoid.Value, function(CallBack)
 		Settings.AntiVoid.Value = CallBack
 	end)
@@ -748,5 +820,11 @@ task.spawn(function()
 		end
 
 		TransparencyValue = not TransparencyValue
+	end)
+end)
+
+task.spawn(function()
+	local DeathTp = CreateToggle("DeathTp", WorldTab, Settings.DeathTp.Value, function(CallBack)
+		Settings.DeathTp.Value = CallBack
 	end)
 end)
