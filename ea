@@ -508,12 +508,12 @@ end
 
 local Settings = {
 	NoClickDelay = {Value = true},--
-	FastConsume = {Value = true},
+	FastConsume = {Value = true},--
 	AutoClicker = {Value = false},--
-	InfiniteFly = {Value = false, Speed = 23},
-	DamageBoost = {Value = true},
-	AutoSprint = {Value = true},
-	FovChanger = {Value = true, Fov = 120},
+	InfiniteFly = {Value = false, Speed = 23},--
+	DamageBoost = {Value = true},--
+	AutoSprint = {Value = true},--
+	FovChanger = {Value = true, Fov = 120},--
 	NoSlowDown = {Value = true},
 	DamageFly = {Value = true},
 	PlayAgain = {Value = true},
@@ -530,7 +530,7 @@ local Settings = {
 	AutoBuy = {Value = true},
 	AntiBan = {Value = true},
 	DeathTp = {Value = false},
-	Aimbot = {Value = true, Range = 5000},
+	Aimbot = {Value = true},
 	NoClip = {Value = false},
 	NoFall = {Value = true},
 	Nuker = {Value = true, BreakOres = true, Range = 30},
@@ -555,6 +555,12 @@ end)
 task.spawn(function()
 	local AutoClicker = CreateToggle("AutoClicker", ComabatTab, Settings.AutoClicker.Value, function(CallBack)
 		Settings.AutoClicker.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local DamageBoost = CreateToggle("DamageBoost", ComabatTab, Settings.DamageBoost.Value, function(CallBack)
+		Settings.DamageBoost.Value = CallBack
 	end)
 end)
 
@@ -619,44 +625,58 @@ task.spawn(function()
 	local Aimbot, DropDownButton, LayoutOrder = CreateToggle("Aimbot", ComabatTab, Settings.Aimbot.Value, function(CallBack)
 		Settings.Aimbot.Value = CallBack
 	end)
-
-	local RangeValue = true
-	local Range
-
-	DropDownButton.Activated:Connect(function()
-		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.Aimbot.Range, 2000, LayoutOrder + 1, function(Callback)
-				Settings.Aimbot.Range = Callback
-			end)
-		end
-
-		if RangeValue == false then
-			Range:Destroy()
-		end
-
-		RangeValue = not RangeValue
-	end)
 end)
 
 task.spawn(function()
 	local Reach, DropDownButton, LayoutOrder = CreateToggle("Reach", ComabatTab, Settings.Reach.Value, function(CallBack)
 		Settings.Reach.Value = CallBack
 	end)
+end)
+
+task.spawn(function()
+	local InfiniteFly = CreateToggle("InfiniteFly", BlatantTab, Settings.InfiniteFly.Value, function(CallBack)
+		Settings.InfiniteFly.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local FastConsume = CreateToggle("FastConsume", UtilityTab, Settings.FastConsume.Value, function(CallBack)
+		Settings.FastConsume.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local NoSlowdown = CreateToggle("NoSlowdown", UtilityTab, Settings.NoSlowdown.Value, function(CallBack)
+		Settings.NoSlowdown.Value = CallBack
+	end)
+end)
+
+task.spawn(function()
+	local FovChanger, DropDownButton, LayoutOrder = CreateToggle("FovChanger", UtilityTab, Settings.FovChanger.Value, function(CallBack)
+		Settings.FovChanger.Value = CallBack
+	end)
 	
-	local RangeValue = true
-	local Range
+	local FovChangerValue = true
+	local FovChanger
 
 	DropDownButton.Activated:Connect(function()
-		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
-				Settings.Reach.Range = Callback
+		if FovChangerValue == true then
+			FovChanger = CreateSlider("FovChanger", ComabatTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
+				Settings.Aimbot.Range = Callback
 			end)
 		end
 
-		if RangeValue == false then
-			Range:Destroy()
+		if FovChangerValue == false then
+			FovChanger:Destroy()
 		end
 
-		RangeValue = not RangeValue
+		FovChangerValue = not FovChangerValue
+	end)
+end)
+
+
+task.spawn(function()
+	local AutoSprint = CreateToggle("AutoSprint", UtilityTab, Settings.AutoSprint.Value, function(CallBack)
+		Settings.AutoSprint.Value = CallBack
 	end)
 end)
