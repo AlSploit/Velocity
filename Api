@@ -14,6 +14,7 @@ VelocityApi.SprintController = KnitClient.Controllers.SprintController
 VelocityApi.SwordController = KnitClient.Controllers.SwordController
 VelocityApi.FovController = KnitClient.Controllers.FovController
 
+VelocityApi.DamageIndicator = KnitClient.Controllers.DamageIndicatorController.spawnDamageIndicator
 VelocityApi.Blocks = debug.getupvalue(require(game.ReplicatedStorage.TS.item["item-meta"]).getItemMeta, 1)
 
 return VelocityApi
