@@ -8,8 +8,12 @@ local KnitClient = debug.getupvalue(require(LocalPlayer.PlayerScripts.TS.knit).s
 
 VelocityApi.Client = require(ReplicatedStorage.TS.remotes).default.Client
 
+VelocityApi.BlockPlacingRemote = ReplicatedStorage.rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.PlaceBlock
+
 VelocityApi.SprintController = KnitClient.Controllers.SprintController
 VelocityApi.SwordController = KnitClient.Controllers.SwordController
 VelocityApi.FovController = KnitClient.Controllers.FovController
+
+VelocityApi.Blocks = debug.getupvalue(require(game.ReplicatedStorage.TS.item["item-meta"]).getItemMeta, 1)
 
 return VelocityApi
