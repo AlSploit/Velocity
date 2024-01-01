@@ -621,20 +621,20 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if DiamondGuardiansValue == true then
-			DiamondGuardians = CreateMiniToggle("DiamondGuardians", ComabatTab, Settings.KillAura.DiamondGuardians, LayoutOrder + 1, function(Callback)
-				Settings.KillAura.DiamondGuardians = Callback
+			DiamondGuardians = CreateMiniToggle("DiamondGuardians", ComabatTab, Settings.KillAura.DiamondGuardians, LayoutOrder + 1, function(CallBack)
+				Settings.KillAura.DiamondGuardians = CallBack
 			end)
 		end
 		
 		if CustomAnimationsValue == true then
-			CustomAnimations = CreateMiniToggle("CustomAnimations", ComabatTab, Settings.KillAura.CustomAnimation, LayoutOrder + 2, function(Callback)
-				Settings.KillAura.CustomAnimation = Callback
+			CustomAnimations = CreateMiniToggle("CustomAnimations", ComabatTab, Settings.KillAura.CustomAnimation, LayoutOrder + 2, function(CallBack)
+				Settings.KillAura.CustomAnimation = CallBack
 			end)
 		end
 
 		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.KillAura.Range, 18, LayoutOrder + 3, function(Callback)
-				Settings.KillAura.Range = Callback
+			Range = CreateSlider("Range", ComabatTab, Settings.KillAura.Range, 18, LayoutOrder + 3, function(CallBack)
+				Settings.KillAura.Range = CallBack
 			end)
 		end
 		
@@ -672,8 +672,8 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if RangeValue == true then
-			Range = CreateSlider("Range", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(Callback)
-				Settings.Reach.Range = Callback
+			Range = CreateSlider("Range", ComabatTab, Settings.Reach.Range, 18, LayoutOrder + 1, function(CallBack)
+				Settings.Reach.Range = CallBack
 			end)
 		end
 
@@ -725,8 +725,8 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if AmountValue == true then
-			Amount = CreateSlider("Amount", BlatantTab, Settings.Gravity.Amount, 196, LayoutOrder + 1, function(Callback)
-				Settings.Gravity.Amount = Callback
+			Amount = CreateSlider("Amount", BlatantTab, Settings.Gravity.Amount, 196, LayoutOrder + 1, function(CallBack)
+				Settings.Gravity.Amount = CallBack
 			end)
 		end
 
@@ -766,8 +766,8 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if AmountValue == true then
-			Amount = CreateSlider("Amount", BlatantTab, Settings.Speed.Amount, 23, LayoutOrder + 1, function(Callback)
-				Settings.Amount.Range = Callback
+			Amount = CreateSlider("Amount", BlatantTab, Settings.Speed.Amount, 23, LayoutOrder + 1, function(CallBack)
+				Settings.Amount.Range = CallBack
 			end)
 		end
 		
@@ -881,9 +881,11 @@ task.spawn(function()
 	local OldGetFov = FovController.getFOV
 	
 	local FovChanger, DropDownButton, LayoutOrder = CreateToggle("FovChanger", WorldTab, Settings.FovChanger.Value, function(CallBack)
-		Settings.FovChanger.Value = CallBack				
+		Settings.FovChanger.Value = Settings.FovChanger.Fov			
 		
 		if CallBack == true then
+			FovController:setFOV(Settings)
+			
 			FovController.setFOV = function(self) 
 				return OldSetFov(self, Settings.FovChanger.Fov) 
 			end
@@ -899,31 +901,33 @@ task.spawn(function()
 		end
 	end)
 
-	local FovChangerValue = true
-	local FovChanger
+	local FovValue = true
+	local Fov
 
 	DropDownButton.Activated:Connect(function()
-		if FovChangerValue == true then
-			FovChanger = CreateSlider("Fov", WorldTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
-				Settings.FovChanger.Fov = Callback
+		if FovValue == true then
+			FovChanger = CreateSlider("Fov", WorldTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(CallBack)
+				Settings.FovChanger.Fov = CallBack
 				
 				if Settings.FovChanger.Value == true then
+					FovController:setFOV(CallBack)
+					
 					FovController.setFOV = function(self) 
-						return OldSetFov(self, Callback) 
+						return OldSetFov(self, CallBack) 
 					end
 
 					FovController.getFOV = function(...) 
-						return Callback
+						return CallBack
 					end
 				end
 			end)
 		end
 
-		if FovChangerValue == false then
+		if FovValue == false then
 			FovChanger:Destroy()
 		end
 
-		FovChangerValue = not FovChangerValue
+		FovValue = not FovValue
 	end)
 end)
 
@@ -949,8 +953,8 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if TransparencyValue == true then
-			Transparency = CreateSlider("Transparency", WorldTab, Settings.AntiVoid.Transparency * 100, 100, LayoutOrder + 1, function(Callback)
-				Settings.AntiVoid.Transparency = Callback / 100
+			Transparency = CreateSlider("Transparency", WorldTab, Settings.AntiVoid.Transparency * 100, 100, LayoutOrder + 1, function(CallBack)
+				Settings.AntiVoid.Transparency = CallBack / 100
 			end)
 		end
 
@@ -981,14 +985,14 @@ task.spawn(function()
 
 	DropDownButton.Activated:Connect(function()
 		if BreakOresValue == true then
-			BreakOres = CreateMiniToggle("BreakOres", WorldTab, Settings.Nuker.BreakOres, LayoutOrder + 1, function(Callback)
-				Settings.Nuker.BreakOres = Callback
+			BreakOres = CreateMiniToggle("BreakOres", WorldTab, Settings.Nuker.BreakOres, LayoutOrder + 1, function(CallBack)
+				Settings.Nuker.BreakOres = CallBack
 			end)
 		end
 
 		if RangeValue == true then
-			Range = CreateSlider("Range", WorldTab, Settings.Nuker.Range, 30, LayoutOrder + 2, function(Callback)
-				Settings.Nuker.Range = Callback
+			Range = CreateSlider("Range", WorldTab, Settings.Nuker.Range, 30, LayoutOrder + 2, function(CallBack)
+				Settings.Nuker.Range = CallBack
 			end)
 		end
 
