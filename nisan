@@ -885,19 +885,10 @@ task.spawn(function()
 		
 		if CallBack == true then
 			FovController:setFOV(Settings)
-			
-			FovController.setFOV = function(self) 
-				return OldSetFov(self, Settings.FovChanger.Fov) 
-			end
-			
-			FovController.getFOV = function(...) 
-				return Settings.FovChanger.Value
-			end
 		end
 
 		if CallBack == false then
 			FovController.setFOV = OldSetFov
-			FovController.getFOV = OldGetFov
 		end
 	end)
 
@@ -911,14 +902,6 @@ task.spawn(function()
 				
 				if Settings.FovChanger.Value == true then
 					FovController:setFOV(CallBack)
-					
-					FovController.setFOV = function(self) 
-						return OldSetFov(self, CallBack) 
-					end
-
-					FovController.getFOV = function(...) 
-						return CallBack
-					end
 				end
 			end)
 		end
