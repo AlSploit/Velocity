@@ -877,11 +877,11 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+	local OldSetFov = FovController.setFOV
+	local OldGetFov = FovController.getFOV
+	
 	local FovChanger, DropDownButton, LayoutOrder = CreateToggle("FovChanger", WorldTab, Settings.FovChanger.Value, function(CallBack)
-		Settings.FovChanger.Value = CallBack
-		
-		local OldSetFov = FovController.setFOV
-		local OldGetFov = FovController.getFOV
+		Settings.FovChanger.Value = CallBack				
 		
 		if CallBack == true then
 			FovController.setFOV = function(self) 
@@ -906,6 +906,16 @@ task.spawn(function()
 		if FovChangerValue == true then
 			FovChanger = CreateSlider("Fov", WorldTab, Settings.FovChanger.Fov, 120, LayoutOrder + 1, function(Callback)
 				Settings.FovChanger.Fov = Callback
+				
+				if Settings.FovChanger.Value == true then
+					FovController.setFOV = function(self) 
+						return OldSetFov(self, Callback) 
+					end
+
+					FovController.getFOV = function(...) 
+						return Callback
+					end
+				end
 			end)
 		end
 
@@ -999,49 +1009,4 @@ task.spawn(function()
 	local Sky = CreateToggle("Sky", WorldTab, Settings.Sky.Value, function(CallBack)
 		Settings.Sky.Value = CallBack
 	end)
-end)
-
-task.spawn(function()
-	task.wait(10)
-	
-	local Tick = tick()
-	
-	local KnitClient = debug.getupvalue(require(LocalPlayer.PlayerScripts.TS.knit).setup, 6)
-
-	local function GetRemote(Remote)
-		for i, v in next, (Remote) do
-			if v == "Client" then
-				return Remote[i + 1]
-			end
-		end
-
-		return ""
-	end
-	
-	local PickupRemote = GetRemote(debug.getconstants(KnitClient.Controllers.ItemDropController.checkForPickup))
-	
-	local _I
-	
-	if not _I then -- 
-		_I = {}
-		local _l
-		for _X = 1, 150000 do
-			_I[#_I+1] = (_l or {})
-			_l = _I[#_I]
-		end
-	end
-
-	coroutine.wrap(function() 
-		repeat
-			pcall(function()
-				coroutine.wrap(function()
-					PickupRemote:InvokeServer(_I)
-				end)()
-			end)
-			task.wait(0.1)
-			
-			Tick = Tick + 0.1
-			
-		until not Tick - tick() > 3
-	end)()
 end)
