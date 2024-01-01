@@ -2301,7 +2301,7 @@ task.spawn(function()
 						CollectEnderChestItems()
 					end
 
-					if not NearestNpc or not IsAlive(LocalPlayer) or not IsNetworkOwner(LocalPlayer.Character.HumanoidRootPart) or Settings.AutoBank.Value == false or LocalPlayer.Character:GetAttribute("Health") < 30 then
+					if not NearestNpc or not IsAlive(LocalPlayer) or not IsNetworkOwner(LocalPlayer.Character.HumanoidRootPart) or LocalPlayer.Character:GetAttribute("Health") < 30 then
 						SecureEnderChestItems()
 					end
 					
@@ -2794,7 +2794,7 @@ end)
 
 task.spawn(function()
 	repeat 
-		task.wait(0.5)
+		task.wait(0.1)
 		
 		task.spawn(function()
 			Players = game.Players:GetPlayers()	
