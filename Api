@@ -10,5 +10,6 @@ VelocityApi.Client = require(ReplicatedStorage.TS.remotes).default.Client
 
 VelocityApi.SprintController = KnitClient.Controllers.SprintController
 VelocityApi.SwordController = KnitClient.Controllers.SwordController
+VelocityApi.FovController = KnitClient.Controllers.FovController
 
 return VelocityApi
